@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Noizer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(24, 24, 24);">
+    <div class="container-fluid">
+      <%= image_tag "logo.png", class:"logo" %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+      <% if user_signed_in? %> 
+          <li class="nav-item">
+          <%= link_to 'New Song', new_song_path, class:"nav-link", style:"color:#00adef" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"nav-link", style:"color: #ec008c" %>
+          </li>
+
+      <% else %>
+          <li class="nav-item">
+            <%= link_to 'Login', new_user_session_path, class:"nav-link", style:"color: #00adef" %> 
+          </li>
+          <li class="nav-item" style="color: #fdd605;">
+            <%= link_to 'Registration', new_user_registration_path, class:"nav-link", style:"color: #fdd605"%>
+          </li>
+      <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <% if flash[:notice] %>
+    <div class="alert alert-success" id="flash" role="alert"><%= notice %></div>
+    <script type="text/javascript">
+setTimeout(function () {
+  
+            // Closing the alert
+            document.querySelector('#flash').style.display = "none";
+        }, 2500);
+    </script>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="alert alert-danger" id="flash"  role="alert"><%= alert %></div>
+    <script type="text/javascript">
+setTimeout(function () {
+            // Closing the alert
+            document.querySelector('#flash').style.display = "none";
+        }, 2500);
+    </script>
+    <% end %>
+    <%= yield %>
+    <footer class="footer mt-auto py-2 fixed-bottom">
+  <div class="container">
+    <audio controls="controls" preload="auto" autobuffer="" id="main-player" src=""></audio>
+    <script>  
+    if(document.getElementById("main-player").getAttribute('src')){
+    }
+    else{
+      document.getElementById("main-player").setAttribute('src', sessionStorage.getItem('current_song'));
+    }
+    </script>
+  </div>
+  <script>
+
+
+
+  function setCookie(c_name,value,exdays)
+{
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var c_value=escape(value) + 
+    ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+    document.cookie=c_name + "=" + c_value;
+}
+
+function getCookie(c_name)
+{
+    var i,x,y,ARRcookies=document.cookie.split(";");
+    for (i=0;i<ARRcookies.length;i++)
+    {
+      x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+      y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+      x=x.replace(/^\s+|\s+$/g,"");
+      if (x==c_name)
+        {
+        return unescape(y);
+        }
+      }
+}
+
+var song = document.getElementById('main-player');
+var played = false;
+var tillPlayed = getCookie('timePlayed');
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        song.currentTime = tillPlayed;
+        song.play();
+        played = true;
+        }
+        else {
+          song.play();
+          played = true;
+        }
+    }
+
+    else {
+    setCookie('timePlayed', song.currentTime);
+    }
+}
+setInterval(update,10); 
+  </script>
+</footer>
+  </body>
+</html>

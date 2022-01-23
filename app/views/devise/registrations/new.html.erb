@@ -1,0 +1,39 @@
+<div class="container-fluid" id="regcontainer">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-5" id="regform">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <h1 class="display-1" style="color:white;">Register</h1>
+  <div class="mb-3">
+    <%= f.label :name, class:"form-label" %><br />
+    <%= f.text_field :name, autocomplete: "name", :required => true, class:"form-control", autofocus: true %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :email, class:"form-label" %><br />
+    <%= f.email_field :email, autocomplete: "email", :required => true, class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password, class:"form-label" %>
+    <% if @minimum_password_length %>
+    <em style="color: white;">(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, :required => true, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password_confirmation, class:"form-label" %><br />
+    <%= f.password_field :password_confirmation, :required => true, autocomplete: "new-password", class:"form-control" %>
+  </div>
+   <div class="mb-3">
+    <%= f.label :image, class:"form-label" %><br />
+    <%= f.file_field :image, class:"form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Sign up", class:"btn btn-primary", id:"login" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

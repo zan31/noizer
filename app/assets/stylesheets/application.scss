@@ -1,0 +1,160 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import 'colors';
+
+ body{
+    background-color: rgb(18, 18, 18) !important;
+ }
+
+ @media only screen and (max-width: 990px) {
+    #photow{
+     display: none;
+   }
+   #postcard{
+     width: 90% !important;
+   }
+   #logincontainer{
+     height: 100vh;
+    background-image: image-url('photo_guitar.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+   }
+   #new_user{
+     padding-top: 10rem;
+     margin: auto;
+   }
+   .link-secondary{
+     color: whitesmoke !important;
+   }
+   #regform{
+     padding-top: 0 !important;
+   }
+   .avatar{
+     width: 1em;
+     height: 1em;
+   }
+}
+
+
+.btn-light{
+  color: white !important;
+  background-color: $pink !important;
+  border-color: $pink1 !important;
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active, .open>.dropdown-toggle.btn-light {
+  color: black !important;
+  box-shadow: 0px 1px 1px $pink1 inset, 0px 0px 5px $pink1 !important;
+}
+audio {
+  width: 100% !important;
+}
+.avatar {
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+#postcard {
+  width: 50%; 
+  margin:auto; 
+  margin-top: 2rem; 
+  background-color: rgb(64, 64, 64);
+  margin-bottom: 2rem;
+}
+.headertext{
+  padding-left: 1em;
+}
+
+#regcontainer{
+  height: 100vh;
+  background-image: image-url('singer.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#songcontainer{
+  height: 100vh;
+}
+
+.display-1{
+  color: white !important;
+}
+
+#regform{
+  padding-top: 10rem;
+}
+
+ .logo{
+   height: 4rem;
+ }
+ .footer{
+    background-color:rgb(24,24,24) !important;
+ }
+
+ #flash {
+   display: block;
+  }
+
+  #loginform{
+    padding-top: 2rem;
+    margin:auto;
+  }
+  .picg{
+    height: 100vh;
+  }
+
+  .link-danger{
+    color: $pink !important;
+  }
+
+  .link-warning{
+    color: $yellow !important;
+  }
+
+  .link-primary{
+    color: $blue !important;
+  }
+
+  .link-secondary{
+    color: whitesmoke !important;
+  }
+
+  .form-label{
+    color: white;
+    font-size: 1.3em;
+  }
+
+  .form-check-label{
+    color: white;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: $pink !important;
+    box-shadow: 0px 1px 1px $pink1 inset, 0px 0px 5px $pink1 !important;
+  }
+
+  .form-check-input:checked {
+    border-color: $pink !important;
+    background-color: $pink !important;
+  }
+
+  #login{
+    background-color: $blue;
+    border: none;
+    padding: 0.5em;
+  }

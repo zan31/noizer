@@ -1,0 +1,42 @@
+<%= form_with(model: song) do |form| %>
+  <% if song.errors.any? %>
+    <div class="alert alert-danger" id="newsonga">
+      <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+      <ul>
+        <% song.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+        <script type="text/javascript">
+setTimeout(function () {
+  
+            // Closing the alert
+            document.querySelector('#newsonga').style.display = "none";
+        }, 5000);
+    </script>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label" %>
+    <%= form.text_field :title, :required => true, class:"form-control" %>
+  </div>
+   <div class="mb-3">
+    <%= form.label :author, class:"form-label" %>
+    <%= form.text_field :author, :required => true, class:"form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :category_id, class:"form-label" %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {:class=>'form-select'}) %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :audio, class:"form-label" %><br />
+    <%= form.file_field :audio, class:"form-control" %>
+  </div>
+   <div class="mb-3">
+    <%= form.label :image, class:"form-label" %><br />
+    <%= form.file_field :image, class:"form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.submit "Post", class:"btn btn-primary", id:"login"  %>
+  </div>
+<% end %>
