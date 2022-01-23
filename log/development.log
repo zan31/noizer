@@ -46703,3 +46703,131 @@ Processing by SongsController#index as HTML
 Completed 200 OK in 88ms (Views: 67.0ms | ActiveRecord: 19.4ms | Allocations: 16338)
 
 
+Started GET "/" for 127.0.0.1 at 2022-01-23 11:00:52 +0100
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering songs/index.html.erb within layouts/application
+  [1m[36mSong Load (3.5ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/views/songs/index.html.erb:1
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  Rendered songs/index.html.erb within layouts/application (Duration: 222.0ms | Allocations: 62781)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 256.9ms | Allocations: 76023)
+Completed 200 OK in 277ms (Views: 225.6ms | ActiveRecord: 34.7ms | Allocations: 83649)
+
+
+Started GET "/null" for 127.0.0.1 at 2022-01-23 11:00:52 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/null"):
+  
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5464200160025518380)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5464200160025518380)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-01-23 11:01:58 +0100
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering songs/index.html.erb within layouts/application
+  [1m[36mSong Load (2.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/views/songs/index.html.erb:1
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  Rendered songs/index.html.erb within layouts/application (Duration: 99.3ms | Allocations: 31433)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 109.8ms | Allocations: 36469)
+Completed 200 OK in 133ms (Views: 86.2ms | ActiveRecord: 28.3ms | Allocations: 44115)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-01-23 11:02:05 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 2.5ms | Allocations: 706)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 22.1ms | Allocations: 6877)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 30.2ms | Allocations: 10881)
+Completed 200 OK in 37ms (Views: 33.9ms | ActiveRecord: 0.0ms | Allocations: 13246)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-01-23 11:02:07 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"zan.hrastnik31@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "zan.hrastnik31@gmail.com"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 263ms (ActiveRecord: 1.9ms | Allocations: 5570)
+
+
+Started GET "/" for 127.0.0.1 at 2022-01-23 11:02:08 +0100
+Processing by SongsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering songs/index.html.erb within layouts/application
+  [1m[36mSong Load (1.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/views/songs/index.html.erb:1
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:6
+  [1m[36mLike Load (1.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:102
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 3]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[36mLike Load (1.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:102
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 2]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/songs/index.html.erb:4
+  [1m[36mLike Load (1.6ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:102
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "likes" WHERE "likes"."song_id" = $1[0m  [["song_id", 6]]
+  ↳ app/views/songs/index.html.erb:115
+  Rendered songs/index.html.erb within layouts/application (Duration: 56.2ms | Allocations: 15603)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 64.1ms | Allocations: 19385)
+Completed 200 OK in 66ms (Views: 49.7ms | ActiveRecord: 15.3ms | Allocations: 19951)
+
+
