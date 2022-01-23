@@ -30,6 +30,10 @@
     <%= f.label :image, class:"form-label" %><br />
     <%= f.file_field :image, class:"form-control" %>
   </div>
+    <div class="mb-3">
+    <%= f.label 'Cover photo', class:"form-label" %><br />
+    <%= f.file_field :coverimage, class:"form-control" %>
+  </div>
 
   <div class="mb-3">
     <%= f.submit "Sign up", class:"btn btn-primary", id:"login" %>

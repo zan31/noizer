@@ -35,6 +35,10 @@
     <%= f.label :image, class:"form-label" %><br />
     <%= f.file_field :image, class:"form-control" %>
   </div>
+  <div class="mb-3">
+    <%= f.label 'Cover photo', class:"form-label" %><br />
+    <%= f.file_field :coverimage, class:"form-control" %>
+  </div>
 
   <div class="mb-3">
     <%= f.label :current_password, class:"form-label" %> <i style="color: white;">(we need your current password to confirm your changes)</i><br />
