@@ -2,15 +2,23 @@
   <div id="postcard" class="card">
   <div class="card-header">
     <% if song.user.image.url %> 
-      <%= image_tag song.user.image.url, class:"avatar" %>
+      <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
+      <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
-        <td><%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %></td>
-        <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
-        <%end%> 
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%end%>
         <%end%> 
     <% else %>
-    <%= image_tag "avatar.png", class:"avatar" %>
+    <%= link_to image_tag("avatar.png", class:"avatar"), account_path(song.user.id) %>
+    <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
+    <%if user_signed_in? %>
+      <% if(current_user.id == song.user.id)%> 
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%end%>
+        <%end%> 
     <%end%> 
   </div>
    <div class="row g-0">
@@ -22,13 +30,11 @@
   <%end%>
   
     </div>
-    <div class="col-md-8">
-  
+    <div class="col-md-3">
     <div class="card-body">
       <h5 class="card-title"><%= song.title %></h5>
-        <p class="card-text"><% if song.author %> <%= song.author %><% else %><%= song.user.name %><%end%> </p>
+        <p class="card-text"><% if (song.author != "") %><%= song.author %><% else %><%= song.user.name %><%end%> </p>
         <% if song.audio.url %> 
-        <!--<%= audio_tag(song.audio.url, controls: true, preload: "auto", autobuffer: "", id: song.audio.url)%>-->
         <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
         <script>
   
@@ -101,31 +107,60 @@
         <%if user_signed_in? %>
         <% pre_like = song.likes.find { |like| like.user_id == current_user.id} %>
 <% if pre_like %>
-  <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, song_like_path(song.id, pre_like), data: { confirm: "If you do this music will stop :(" }, method: :delete, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;"%>
+  <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, song_like_path(song.id, pre_like), method: :delete, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;"%>
 <% else %>
-  <%= link_to '<i class="bi bi-heart"></i>'.html_safe, song_likes_path(song.id), data: { confirm: "If you do this music will stop :(" }, method: :post, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;" %>
+  <%= link_to '<i class="bi bi-heart"></i>'.html_safe, song_likes_path(song.id), method: :post, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;" %>
 <% end %>
 <% end %>
 <div> 
   </div>
     </div>
         </div>
-  <div class="card-footer text-muted d-inline">
+        <div class="col-md-5">
+      <% song.comments.limit(2).each do |comment| %>
+      <% unless !comment.persisted? %>
+<div class="card" style="background-color: rgb(64, 64, 64);">
+  <div class="card-body">
+  <h6 class="card-title" style="color: white;">
+<% if comment.user.image.url %> 
+      <%= link_to image_tag(comment.user.image.url, class:"small"), account_path(comment.user.id) %>
+      <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <% else %>
+    <%= link_to image_tag("avatar.png", class:"small"), account_path(comment.user.id) %>
+    <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <%end%> 
+  <%= comment.user.name %><%if(comment.song_time!=nil)%> at <%= comment.song_time %> seconds</span><%end%></h6>
+    <p class="card-text" stye="color: whitesmoke;"><%= comment.body %></p>
+  </div>
+</div>
+<%end%>
+      <%end%>
+    </div>
+  <div class="card-footer text-muted">
+     <div class="row g-0">
+    <div class="col-md-6">
   <div class="d-inline">
     <%= song.likes.count %> <%= (song.likes.count) == 1 ? 'Like' : 'Likes'%>
-  <script>
-document.addEventListener('play', function(e){
-    var audios = document.getElementsByTagName('audio');
-    for(var i = 0, len = audios.length; i < len;i++){
-        if(audios[i] != e.target){
-            audios[i].pause();
-        }
-    }
-}, true);
-</script> 
+    |
+    <%= song.comments.count %> <%= (song.comments.count) == 1 ? 'Comment' : 'Comments'%>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div style="text-align: right !important;">
+    <%= song.created_at %>
+    </div>
+    </div>
 </div>
 </div>
     </div>
   </div>
-  
+  </div>
     <% end %>

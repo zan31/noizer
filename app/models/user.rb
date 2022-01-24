@@ -6,8 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers:[:google_oauth2]
 
-  has_many :songs
+  has_many :songs, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def self.from_omniauth(access_token)
     data = access_token.info

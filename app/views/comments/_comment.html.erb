@@ -1,0 +1,24 @@
+<% unless !comment.persisted? %>
+<div class="card" style="background-color: rgb(64, 64, 64);">
+  <div class="card-body">
+  <h6 class="card-title" style="color: white;">
+<% if comment.user.image.url %> 
+      <%= link_to image_tag(comment.user.image.url, class:"small"), account_path(comment.user.id) %>
+      <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Destroy', song_comment_path(@song.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <% else %>
+    <%= link_to image_tag("avatar.png", class:"small"), account_path(comment.user.id) %>
+    <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Destroy', song_comment_path(@song.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <%end%> 
+  <%= comment.user.name %> <span style="color: whitesmoke !important; font-weight:normal !important;"><%if(comment.song_time!=nil)%> at <%= comment.song_time %> seconds</span><%end%></h6>
+    <p class="card-text" stye="color: whitesmoke;"><%= comment.body %></p>
+  </div>
+</div>
+<%end%>

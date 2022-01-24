@@ -2,9 +2,10 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-md-5" id="songform">
 <h1 class="display-1">Edit song</h1>
+<i style="color: white;">(leave files blank if you don't want to change them)</i>
 
 <%= render 'form', song: @song %>
-<%= link_to 'Back', songs_path %>
+<%= link_to 'Back', songs_path, class:"link-secondary" %>
 </div>
 </div>
 </div>

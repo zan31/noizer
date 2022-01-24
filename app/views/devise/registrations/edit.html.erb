@@ -22,21 +22,20 @@
     <%= f.label :password, class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
     <% if @minimum_password_length %>
-      <br />
       <em style="color: white;"><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
  <div class="mb-3">
     <%= f.label :password_confirmation, class:"form-label" %><br />
-    <%= f.password_field :password_confirmation, :required => true, autocomplete: "new-password", class:"form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
    <div class="mb-3">
-    <%= f.label :image, class:"form-label" %><br />
+    <%= f.label :image, class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
     <%= f.file_field :image, class:"form-control" %>
   </div>
   <div class="mb-3">
-    <%= f.label 'Cover photo', class:"form-label" %><br />
+    <%= f.label 'Cover photo', class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
     <%= f.file_field :coverimage, class:"form-control" %>
   </div>
 
@@ -50,4 +49,4 @@
   </div>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class:"link-secondary" %>

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :accounts
   resources :categories
   resources :songs do
-    resources :likes
-  end
+      resources :likes
+      resources :comments
+      end
   # devise_for :users, :controllers => {omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
   #get  'top', to: 'songs#top'
