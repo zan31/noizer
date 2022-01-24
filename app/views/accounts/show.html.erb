@@ -1,12 +1,33 @@
-<p>All the comments this user received: <%=@allcomments.count%></p>
-<p>All the likes this user received: <%=@alllikes.count%></p>
-<div class="card" style="width: 80%;">
+<div class="card" id="usercard">
 <%if @user.coverimage.url %>
-  <img src="..." class="card-img-top" alt="...">
+<%= image_tag @user.coverimage.url, class:"card-img-top" %>
+  <%end%>
+  <div class="row g-0">
+    <div class="col-md-3">
+    <% if @user.image.url %>
+    <%= image_tag @user.image.url, class:"img-fluid rounded-start" %>
+    <%else%>
+    <%= image_tag "avatar.png", class:"img-fluid rounded-start" %>
+    <%end%>
+    </div>
+    <div class="col-md-9">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">@<%=@user.name%> | <%=@user.email%></h5>
+    <p class="card-text">Liked <%= @likes.count %> <%= (@likes.count) == 1 ? 'song' : 'songs'%><br/>
+    Recieved <%= @alllikes.count %> <%= (@alllikes.count) == 1 ? 'like' : 'likes'%><br/>
+    Commented on songs <%= @comments.count %> <%= (@comments.count) == 1 ? 'time' : 'times'%><br/>
+    Recieved <%= @allcomments.count %> <%= (@allcomments.count) == 1 ? 'comment' : 'comments'%><br/>
+    and has <%= @songs.count %> <%= (@songs.count) == 1 ? 'song' : 'songs'%>
+    </p>
+  </div>
+  </div>
+    <div class="card-footer text-muted">
+     <div class="row g-0">
+    <div class="col-md-12">
+    <%= @user.created_at %>
+    </div>
+</div>
+</div>
   </div>
 </div>
 <% @songs.each do |song| %>
