@@ -1,30 +1,36 @@
 <div class="card" id="usercard">
 <%if @user.coverimage.url %>
-<%= image_tag @user.coverimage.url, class:"card-img-top" %>
+<%= image_tag @user.coverimage.url, class:"card-img", id:"usercov" %>
+<div class="card-img-overlay">
   <%end%>
   <div class="row g-0">
-    <div class="col-md-3">
+    <div class="col-md-6">
     <% if @user.image.url %>
-    <%= image_tag @user.image.url, class:"img-fluid rounded-start" %>
+    <%= image_tag @user.image.url, class:"img-fluid", id:"userimg" %>
     <%else%>
-    <%= image_tag "avatar.png", class:"img-fluid rounded-start" %>
+    <%= image_tag "avatar.png", class:"img-fluid", id:"userimg"  %>
     <%end%>
     </div>
-    <div class="col-md-9">
-  <div class="card-body">
-    <h5 class="card-title">@<%=@user.name%> | <%=@user.email%></h5>
-    <p class="card-text">Liked <%= @likes.count %> <%= (@likes.count) == 1 ? 'song' : 'songs'%><br/>
+    <div class="col-md-6">
+  </div>
+  <%if @user.coverimage.url %>
+  </div>
+  <%end%>
+  </div>
+ <div class="card-body">
+    <h5 class="card-title"><span style="padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">@<%=@user.name%> | <%=@user.email%></span></h5>
+    <p class="card-text "><span style="padding: 0.2rem; background-color: rgb(64, 64, 64);">Liked <%= @likes.count %> <%= (@likes.count) == 1 ? 'song' : 'songs'%><br/>
     Recieved <%= @alllikes.count %> <%= (@alllikes.count) == 1 ? 'like' : 'likes'%><br/>
     Commented on songs <%= @comments.count %> <%= (@comments.count) == 1 ? 'time' : 'times'%><br/>
     Recieved <%= @allcomments.count %> <%= (@allcomments.count) == 1 ? 'comment' : 'comments'%><br/>
     and has <%= @songs.count %> <%= (@songs.count) == 1 ? 'song' : 'songs'%>
+    </span>
     </p>
-  </div>
   </div>
     <div class="card-footer text-muted">
      <div class="row g-0">
     <div class="col-md-12">
-    <%= @user.created_at %>
+    <%= time_ago_in_words(@user.created_at) %> ago
     </div>
 </div>
 </div>
@@ -187,7 +193,7 @@
     </div>
     <div class="col-md-6">
     <div style="text-align: right !important;">
-    <%= song.created_at %>
+    <%= time_ago_in_words(song.created_at) %> ago
     </div>
     </div>
 </div>
@@ -195,4 +201,4 @@
     </div>
   </div>
   </div>
-    <% end %>
+<% end %>

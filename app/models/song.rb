@@ -8,4 +8,8 @@ class Song < ApplicationRecord
     belongs_to :category
     has_many :likes, dependent: :destroy
     has_many :comments, dependent: :destroy
+
+    def self.search(keyword)
+        where(["LOWER(title) like?", "%#{keyword}%"])
+    end
 end

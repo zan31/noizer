@@ -2,7 +2,7 @@
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to '<button type="button" style="margin-top: 1em; margin-bottom: 1em;" class="btn btn-outline-light"><i class="bi bi-google"></i> Google</button>'.html_safe, omniauth_authorize_path(resource_name, provider), method: :post %><br />
   <% end %>
-  <% end %>
+<% end %>
 
 <%- if controller_name != 'sessions' %>
   <%= link_to "Log in", new_session_path(resource_name), class:"link-secondary" %><br />

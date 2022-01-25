@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="mb-3">
-    <%= f.label :password, class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, class:"form-label" %><i style="color: white;"> (leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
     <% if @minimum_password_length %>
       <em style="color: white;"><%= @minimum_password_length %> characters minimum</em>
@@ -31,16 +31,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
    <div class="mb-3">
-    <%= f.label :image, class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
+    <%= f.label 'Profile picture', class:"form-label" %><i style="color: white;"> (leave blank if you don't want to change it)</i><br />
     <%= f.file_field :image, class:"form-control" %>
   </div>
   <div class="mb-3">
-    <%= f.label 'Cover photo', class:"form-label" %><i style="color: white;">(leave blank if you don't want to change it)</i><br />
+    <%= f.label 'Cover photo', class:"form-label" %><i style="color: white;"> (leave blank if you don't want to change it)</i><br />
     <%= f.file_field :coverimage, class:"form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :current_password, class:"form-label" %> <i style="color: white;">(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, class:"form-label" %> <i style="color: white;"> (we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
   </div>
 

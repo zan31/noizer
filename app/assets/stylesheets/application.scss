@@ -49,9 +49,17 @@
      width: 1em;
      height: 1em;
    }
+   #userimg{
+    width: 10em !important;
+    height: 10em !important;
+  }
 }
 
-
+#usercov{
+  height: auto !important;
+  max-height: 20rem;
+  overflow: hidden;
+}
 .btn-light{
   color: white !important;
   background-color: $pink !important;
@@ -90,8 +98,13 @@ audio {
 }
 #usercard{
   background-color: rgb(64, 64, 64);
-  width: 60%;
+  width: 90%;
   margin: auto;
+}
+#userimg{
+  width: 15em;
+  height: 15em;
+  border-radius: 50%;
 }
 .headertext{
   padding-left: 1em;

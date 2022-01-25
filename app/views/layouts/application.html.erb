@@ -20,27 +20,34 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
       <ul class="navbar-nav ms-auto">
+      <%= link_to '<i class="bi bi-x-lg"></i>'.html_safe, root_path, class:"nav-link"%>
+      <%= form_with url: search_path, method: :get, class:"d-flex"  , local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword, class:"form-control me-2", type:"search", placeholder:"Search"%>
+          <%= f.submit 'Search', class:"btn btn-outline-light" %>
+        <% end %>
       <% if user_signed_in? %> 
           <li class="nav-item">
-          <%= link_to 'New Song', new_song_path, class:"nav-link", style:"color:#00adef" %>
+          <%= link_to '<i class="bi bi-file-music-fill"></i> New Song'.html_safe, new_song_path, class:"nav-link", style:"color:#00adef" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Edit', edit_user_registration_path, class:"nav-link", style:"color: #fdd605" %>
+            <%= link_to '<i class="bi bi-person-fill"></i> Edit account'.html_safe, edit_user_registration_path, class:"nav-link", style:"color: #fdd605" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"nav-link", style:"color: #ec008c" %>
+            <%= link_to '<i class="bi bi-door-closed-fill"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class:"nav-link", style:"color: #ec008c" %>
           </li>
 
       <% else %>
           <li class="nav-item">
-            <%= link_to 'Login', new_user_session_path, class:"nav-link", style:"color: #00adef" %> 
+            <%= link_to '<i class="bi bi-door-open-fill"></i> Login'.html_safe, new_user_session_path, class:"nav-link", style:"color: #00adef" %> 
           </li>
           <li class="nav-item" style="color: #fdd605;">
-            <%= link_to 'Registration', new_user_registration_path, class:"nav-link", style:"color: #fdd605"%>
+            <%= link_to '<i class="bi bi-door-open"></i> Registration'.html_safe, new_user_registration_path, class:"nav-link", style:"color: #fdd605"%>
           </li>
       <% end %>
-        </ul>
+        </ul>  
+        
       </div>
     </div>
   </nav>

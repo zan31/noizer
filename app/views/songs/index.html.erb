@@ -3,20 +3,20 @@
   <div class="card-header">
     <% if song.user.image.url %> 
       <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
-      <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
+      <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
-        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
-        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
         <%end%>
         <%end%> 
     <% else %>
     <%= link_to image_tag("avatar.png", class:"avatar"), account_path(song.user.id) %>
-    <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
+    <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
     <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
-        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
-        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
         <%end%>
         <%end%> 
     <%end%> 
@@ -126,14 +126,14 @@
       <%= link_to image_tag(comment.user.image.url, class:"small"), account_path(comment.user.id) %>
       <%if user_signed_in? %>
       <% if(current_user.id == comment.user.id)%>
-      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Delete', song_comment_path(song.id, comment.id), class: "link-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
         <%end%>
         <%end%> 
     <% else %>
     <%= link_to image_tag("avatar.png", class:"small"), account_path(comment.user.id) %>
     <%if user_signed_in? %>
       <% if(current_user.id == comment.user.id)%>
-      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), class: "link-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
         <%end%>
         <%end%> 
     <%end%> 
@@ -155,7 +155,7 @@
     </div>
     <div class="col-md-6">
     <div style="text-align: right !important;">
-    <%= song.created_at %>
+    <%= time_ago_in_words(song.created_at) %> ago
     </div>
     </div>
 </div>

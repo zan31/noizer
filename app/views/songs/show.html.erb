@@ -2,20 +2,20 @@
   <div class="card-header">
     <% if @song.user.image.url %> 
       <%= link_to image_tag(@song.user.image.url, class:"avatar"), account_path(@song.user.id) %>
-      <%= link_to 'Back', songs_path, class:"btn btn-dark" %>
+      <%= link_to 'Back', songs_path, class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
       <% if(current_user.id == @song.user.id)%> 
-        <%= link_to 'Edit', edit_song_path(@song), class:"btn btn-primary" %>
-        <%= link_to 'Delete', @song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%= link_to 'Edit', edit_song_path(@song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', @song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
         <%end%>
         <%end%> 
     <% else %> 
       <%= link_to image_tag("avatar.png", class:"avatar"), account_path(@song.user.id) %>
-      <%= link_to 'Back', songs_path, class:"btn btn-dark" %>
+      <%= link_to 'Back', songs_path, class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
         <% if(current_user.id == @song.user.id)%> 
-          <%= link_to 'Edit', edit_song_path(@song), class:"btn btn-primary" %>
-          <%= link_to 'Delete', @song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <%= link_to 'Edit', edit_song_path(@song), class:"btn btn-outline-warning" %>
+          <%= link_to 'Delete', @song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
           <%end%>
         <%end%> 
     <%end%> 
@@ -112,7 +112,6 @@
 <div> 
   </div>
     </div>
-   
         </div> 
         <div class="col-md-6">
         <%if user_signed_in? %>
@@ -145,7 +144,9 @@
           
       </script>
         <%= f.hidden_field :song_id, value: @song.id %>
+        <div class="mb-3">
       <%= f.submit 'Submit', class: 'btn btn-primary', id: "login" %>
+      </div>
     <% end %>
      <% end %>
 
@@ -164,7 +165,7 @@
     </div>
     <div class="col-md-6">
     <div style="text-align: right !important;">
-    <%= @song.created_at %>
+    <%= time_ago_in_words(@song.created_at) %> ago
     </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search' => 'songs#search'
   resources :accounts
   resources :categories
   resources :songs do

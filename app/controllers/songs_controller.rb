@@ -22,6 +22,12 @@ class SongsController < ApplicationController
   def edit
   end
 
+  def search
+    @songs = Song.search(params[:keyword].downcase)
+    @keyword = params[:keyword]
+    render "index"
+  end
+
   # POST /songs or /songs.json
   def create
     @song = Song.new(song_params)
