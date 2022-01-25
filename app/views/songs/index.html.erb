@@ -3,6 +3,15 @@
   <div class="card-header">
     <% if song.user.image.url %> 
       <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
+          <% if user_signed_in? %>
+  <% unless song.user == current_user %>
+    <% if current_user.following?(song.user) %>
+      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %>
       <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
@@ -12,6 +21,15 @@
         <%end%> 
     <% else %>
     <%= link_to image_tag("avatar.png", class:"avatar"), account_path(song.user.id) %>
+        <% if user_signed_in? %>
+  <% unless song.user == current_user %>
+    <% if current_user.following?(song.user) %>
+      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %>
     <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
     <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 

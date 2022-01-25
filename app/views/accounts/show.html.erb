@@ -18,8 +18,20 @@
   <%end%>
   </div>
  <div class="card-body">
-    <h5 class="card-title"><span style="padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">@<%=@user.name%> | <%=@user.email%></span></h5>
-    <p class="card-text "><span style="padding: 0.2rem; background-color: rgb(64, 64, 64);">Liked <%= @likes.count %> <%= (@likes.count) == 1 ? 'song' : 'songs'%><br/>
+    <h5 class="card-title"><span style="padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">@<%=@user.name%> | <%=@user.email%> 
+    <% if user_signed_in? %>
+  <% unless @user == current_user %>
+    <% if current_user.following?(@user) %>
+      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(@user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(@user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %></span></h5>
+    <p class="card-text "><span style="padding: 0.2rem; background-color: rgb(64, 64, 64);">
+    Follows <%= @user.following.count %> <%= (@user.following.count) == 1 ? 'user' : 'users'%><br/>
+    <%= @user.follower.count %> <%= (@user.follower.count) == 1 ? 'follower' : 'followers'%><br/>
+    Liked <%= @likes.count %> <%= (@likes.count) == 1 ? 'song' : 'songs'%><br/>
     Recieved <%= @alllikes.count %> <%= (@alllikes.count) == 1 ? 'like' : 'likes'%><br/>
     Commented on songs <%= @comments.count %> <%= (@comments.count) == 1 ? 'time' : 'times'%><br/>
     Recieved <%= @allcomments.count %> <%= (@allcomments.count) == 1 ? 'comment' : 'comments'%><br/>

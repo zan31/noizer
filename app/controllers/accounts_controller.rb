@@ -10,6 +10,14 @@ class AccountsController < ApplicationController
         @alllikes = Like.where(song_id: @songs.ids)
     end
 
+    def following
+        @user  = User.find(params[:id])
+    end
+  
+    def follower
+        @user  = User.find(params[:id])
+    end
+
     private 
 
     def load_songs
