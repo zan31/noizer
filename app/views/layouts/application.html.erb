@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Noizer</title>
+    <title><%= (yield(:title) + " - " unless yield(:title).blank?).to_s + "Noizer" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -28,6 +28,7 @@
           <%= f.submit 'Search', class:"btn btn-outline-light" %>
         <% end %>
       <% if user_signed_in? %> 
+      <%if current_user.user_role? && !current_user.superadmin_role %>
           <li class="nav-item">
           <%= link_to '<i class="bi bi-file-music-fill"></i> New Song'.html_safe, new_song_path, class:"nav-link", style:"color:#00adef" %>
           </li>
@@ -37,7 +38,15 @@
           <li class="nav-item">
             <%= link_to '<i class="bi bi-door-closed-fill"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class:"nav-link", style:"color: #ec008c" %>
           </li>
-
+        <%end%>
+        <%if current_user.superadmin_role? %>
+        <li class="nav-item">
+          <%= link_to '<i class="bi bi-speedometer2"></i> Admin panel'.html_safe, rails_admin_path, class:"nav-link", style:"color:#00adef" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '<i class="bi bi-door-closed-fill"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class:"nav-link", style:"color: #ec008c" %>
+          </li>
+        <%end%>
       <% else %>
           <li class="nav-item">
             <%= link_to '<i class="bi bi-door-open-fill"></i> Login'.html_safe, new_user_session_path, class:"nav-link", style:"color: #00adef" %> 

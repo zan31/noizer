@@ -1,3 +1,4 @@
+<% content_for :title, "All songs" %>
 <% @songs.each do |song| %>
   <div id="postcard" class="card">
   <div class="card-header">
@@ -6,9 +7,9 @@
           <% if user_signed_in? %>
   <% unless song.user == current_user %>
     <% if current_user.following?(song.user) %>
-      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -24,9 +25,9 @@
         <% if user_signed_in? %>
   <% unless song.user == current_user %>
     <% if current_user.following?(song.user) %>
-      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -50,7 +51,7 @@
     </div>
     <div class="col-md-3">
     <div class="card-body">
-      <h5 class="card-title"><%= song.title %></h5>
+      <h5 class="card-title" style="color:white;"><%= song.title %></h5>
         <p class="card-text"><% if (song.author != "") %><%= song.author %><% else %><%= song.user.name %><%end%> </p>
         <% if song.audio.url %> 
         <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>

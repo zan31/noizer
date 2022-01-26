@@ -1,3 +1,4 @@
+<% content_for :title, @user.name %>
 <div class="card" id="usercard">
 <%if @user.coverimage.url %>
 <%= image_tag @user.coverimage.url, class:"card-img", id:"usercov" %>
@@ -22,9 +23,9 @@
     <% if user_signed_in? %>
   <% unless @user == current_user %>
     <% if current_user.following?(@user) %>
-      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(@user.id), method: :delete, class:"link-danger", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(@user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(@user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(@user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %></span></h5>
@@ -53,11 +54,11 @@
   <div class="card-header">
     <% if song.user.image.url %> 
       <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
-      <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
+      <%= link_to 'Details', song_path(song), class:"btn btn-outline-light" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
-        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
-        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
         <%end%>
         <%end%> 
     <% else %>

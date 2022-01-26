@@ -1,3 +1,4 @@
+  <% content_for :title, @song.title %>
   <div id="showcard" class="card">
   <div class="card-header">
     <% if @song.user.image.url %> 
@@ -5,9 +6,9 @@
       <% if user_signed_in? %>
   <% unless @song.user == current_user %>
     <% if current_user.following?(@song.user) %>
-      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -23,9 +24,9 @@
       <% if user_signed_in? %>
   <% unless @song.user == current_user %>
     <% if current_user.following?(@song.user) %>
-      <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-heart"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>

@@ -26,6 +26,9 @@ gem 'carrierwave', '~> 2.0'
 gem 'fog-aws'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
+gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

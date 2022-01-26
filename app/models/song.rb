@@ -10,6 +10,6 @@ class Song < ApplicationRecord
     has_many :comments, dependent: :destroy
 
     def self.search(keyword)
-        where(["LOWER(title) like?", "%#{keyword}%"])
+        where(["LOWER(title) like? OR Lower(author) like?", "%#{keyword}%", "%#{keyword}%"])
     end
 end

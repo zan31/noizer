@@ -1,6 +1,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to '<button type="button" style="margin-top: 1em; margin-bottom: 1em;" class="btn btn-outline-light"><i class="bi bi-google"></i> Google</button>'.html_safe, omniauth_authorize_path(resource_name, provider), method: :post %><br />
+    <%= link_to '<button type="button" style="margin-top: 1em; margin-bottom: 1em;" class="btn btn-outline-info"><i class="bi bi-facebook"></i> Facebook</button>'.html_safe, omniauth_authorize_path(resource_name, provider), method: :post %><br />
   <% end %>
 <% end %>
 
