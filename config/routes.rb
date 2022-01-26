@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   # devise_for :users, :controllers => {omniauth_callbacks: 'users/omniauth_callbacks' }
-  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   #get  'top', to: 'songs#top'
 
   root "songs#index"

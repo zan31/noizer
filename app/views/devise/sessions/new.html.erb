@@ -28,6 +28,8 @@
     <%= f.submit "Log in", class:"btn btn-primary", id:"login" %>
   </div>
 <% end %>
+<%= link_to "Register with Facebook", user_facebook_omniauth_authorize_path %>
+<%= link_to "Register with Google", user_google_oauth2_omniauth_authorize_path %>
 
 <%= render "devise/shared/links" %>
 </div>

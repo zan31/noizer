@@ -28,17 +28,9 @@ class User < ApplicationRecord
     following_user.include?(user_id)
   end
 
-  def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.where(email: data['email']).first
-
-    unless user
-       user = User.create(
-          name: data['name'],
-          email: data['email'],
-          password: Devise.friendly_token[0,20]
-        )
-    end
-    user
-end
+  def self.from_omniauth(auth)
+    user = User.where(email: auth.info.email).first
+    user ||= User.create!(provider: auth.provider, uid: auth.uid, name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20])
+      user
+  end
 end
