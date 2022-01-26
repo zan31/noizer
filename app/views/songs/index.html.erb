@@ -52,7 +52,7 @@
     <div class="col-md-3">
     <div class="card-body">
       <h5 class="card-title" style="color:white;"><%= song.title %></h5>
-        <p class="card-text"><% if (song.author != "") %><%= song.author %><% else %><%= song.user.name %><%end%> </p>
+        <p class="card-text"><% if (song.author != "" || song.author.nil?) %><%= song.author %><% else %><%= song.user.name %><%end%> </p>
         <% if song.audio.url %> 
         <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
         <script>
