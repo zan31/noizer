@@ -37,6 +37,9 @@
      width: 1em;
      height: 1em;
    }
+   #account-table{
+     width: 80% !important;
+   }
    #userimg{
     width: 10em !important;
     height: 10em !important;
@@ -56,6 +59,11 @@
 }
 i{
   vertical-align: top;
+}
+#account-table{
+  color: lightgrey !important;
+  width: 20%;
+  text-align: center;
 }
 .btn-light{
   color: white !important;

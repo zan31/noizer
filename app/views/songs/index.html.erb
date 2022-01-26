@@ -9,7 +9,7 @@
     <% if current_user.following?(song.user) %>
       <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -27,7 +27,7 @@
     <% if current_user.following?(song.user) %>
       <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -41,7 +41,7 @@
     <%end%> 
   </div>
    <div class="row g-0">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <% if song.image.url %>
   <%= image_tag song.image.url, class:"img-fluid rounded-start" %>
   <%else%>
@@ -49,7 +49,7 @@
   <%end%>
   
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
     <div class="card-body">
       <h5 class="card-title" style="color:white;"><%= song.title %></h5>
         <p class="card-text"><% if (song.author != "" || song.author.nil?) %><%= song.author %><% else %><%= song.user.name %><%end%> </p>

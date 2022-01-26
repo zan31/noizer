@@ -8,7 +8,7 @@
     <% if current_user.following?(@song.user) %>
       <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>
@@ -26,7 +26,7 @@
     <% if current_user.following?(@song.user) %>
       <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(@song.user.id), method: :delete, class:"link-danger", id:"follow"%>
     <% else %>
-      <%= link_to '<i class="bi bi-person-plus-fill"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(@song.user.id), method: :post, class:"link-secondary", id:"follow"%>
     <% end %>
   <% end %>
 <% end %>

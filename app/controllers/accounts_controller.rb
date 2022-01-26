@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
     before_action :load_songs, only: :show
     before_action :load_comments, only: :show
     before_action :load_likes, only: :show
+    
 
 
     def show
@@ -19,6 +20,11 @@ class AccountsController < ApplicationController
     end
 
     private 
+
+    def find_user
+        @user = User.where(name: params[:id])
+    end
+    
 
     def load_songs
         @songs= Song.where(user_id: params[:id])

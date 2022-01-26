@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers:[:google_oauth2, :facebook]
 
+  validates :name, presence: true
+
   has_many :songs, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
