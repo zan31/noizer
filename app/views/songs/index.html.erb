@@ -13,7 +13,7 @@
     <% end %>
   <% end %>
 <% end %>
-      <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
+      <%= link_to 'Comments', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
         <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
@@ -31,7 +31,7 @@
     <% end %>
   <% end %>
 <% end %>
-    <%= link_to 'Details', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
+    <%= link_to 'Comments', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
     <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
         <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
@@ -56,9 +56,18 @@
         <% if song.audio.url %> 
         <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
         <script>
+          function setCookie(c_name,value,exdays)
+          {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value=escape(value) + 
+            ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value+ "; path=/";
+          }
   
    function change_music(music, id, idi)
    {
+     setCookie('playState', 'true');
     var elements = document.getElementsByClassName("bi bi-pause");
     var buttons = document.getElementsByClassName("btn btn-light rounded-circle");
 
@@ -66,10 +75,8 @@
     for(var i = buttons.length - 1; i >= 0; --i)
     {
         if(buttons[i].getAttribute('id') == id){
-          console.log("peder");
         }
         else{
-          console.log("krneki");
           let x = buttons[i].getAttribute("onclick").split("_");
           x[0] = "change";
           var string = x.join("_");
@@ -94,6 +101,7 @@
        document.getElementById("main-player").play();
        document.getElementById(id).setAttribute( "onclick", "pause_music('" + music + "', '" + id + "', '" + idi +"')");
        document.getElementById(idi).className = "bi bi-pause";
+       
      }
      else{
        document.getElementById("main-player").pause();
@@ -101,20 +109,22 @@
        document.getElementById("main-player").load();
        document.getElementById("main-player").play();
        
-      sessionStorage.setItem('current_song',music);
-      //alert(sessionStorage.getItem('current_song'));
+       
+       sessionStorage.setItem('current_song',music);
 
-     document.getElementById(id).setAttribute( "onclick", "pause_music('" + music + "', '" + id + "', '" + idi +"')");
-     document.getElementById(idi).className = "bi bi-pause";
+       document.getElementById(id).setAttribute( "onclick", "pause_music('" + music + "', '" + id + "', '" + idi +"')");
+       document.getElementById(idi).className = "bi bi-pause";
      }
 
    }
 
    function pause_music(music, id, idi) 
    {
+     setCookie('playState', 'false');
      document.getElementById("main-player").pause();
      document.getElementById(id).setAttribute( "onclick", "change_music('" + music + "', '" + id + "', '" + idi +"')");
      document.getElementById(idi).className = "bi bi-play";
+     
    }
 
 

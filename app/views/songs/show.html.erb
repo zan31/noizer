@@ -55,9 +55,18 @@
         <% if @song.audio.url %> 
         <button type="button" id="<%= @song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=@song.audio.url%>', '<%=@song.id%>', 'i<%=@song.id%>');"><i id='i<%=@song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
         <script>
+        function setCookie(c_name,value,exdays)
+          {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value=escape(value) + 
+            ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value+ "; path=/";
+          }
 
    function change_music(music, id, idi)
    {
+     setCookie('playState', 'true');
     var elements = document.getElementsByClassName("bi bi-pause");
     var buttons = document.getElementsByClassName("btn btn-light rounded-circle");
 
@@ -109,6 +118,7 @@
 
    function pause_music(music, id, idi) 
    {
+     setCookie('playState', 'false');
      document.getElementById("main-player").pause();
      document.getElementById(id).setAttribute( "onclick", "change_music('" + music + "', '" + id + "', '" + idi +"')");
      document.getElementById(idi).className = "bi bi-play";

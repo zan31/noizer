@@ -94,7 +94,6 @@ setTimeout(function () {
   <script>
 
 
-
   function setCookie(c_name,value,exdays)
 {
     var exdate=new Date();
@@ -122,16 +121,44 @@ function getCookie(c_name)
 var song = document.getElementById('main-player');
 var played = false;
 var tillPlayed = getCookie('timePlayed');
+song.addEventListener('volumechange', function() {
+    setCookie('volume', song.volume);
+}, false);
+
+if(getCookie("volume") != null){
+  var vol = getCookie("volume");
+  song.volume = vol;
+}
+
 function update()
 {
     if(!played){
         if(tillPlayed){
+          var state = getCookie("playState");
+          if(state == 'false') {
+            console.log("ne stari");
+            console.log(state);
+          }
+          if(state == 'true') {
+            console.log("ja STARI");
+            console.log(state);
+            song.play();
+          }
           song.currentTime = tillPlayed;
-          song.play();
+          
           played = true;
         }
         else {
-          song.play();
+          var state = getCookie("playState");
+          if(state == 'false') {
+            console.log("ne stari");
+            console.log(state);
+          }
+          if(state == 'true') {
+            console.log("ja STARI");
+            console.log(state);
+            song.play();
+          }
           played = true;
         }
     }

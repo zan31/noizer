@@ -33,16 +33,16 @@
     <table id="account-table" class="table" style="border:0 !important;">
   <thead style="border:0 !important;">
     <tr style="border:0 !important;">
-      <th style="border:0 !important;" scope="col">Followers</th>
-      <th style="border:0 !important;" scope="col">Following</th>
-      <th style="border:0 !important;" scope="col">Songs</th>
+      <th style="border:0;" scope="col">Followers</th>
+      <th style="border:0;" class="border-start" scope="col">Following</th>
+      <th style="border:0;" class="border-start" scope="col">Songs</th>
     </tr>
   </thead>
   <tbody style="border:0 !important;">
     <tr style="border:0 !important;">
-      <td style="border:0 !important;"><%= @user.follower.count %></td>
-      <td style="border:0 !important;"><%= @user.following.count %></td>
-      <td style="border:0 !important;"><%= @songs.count %></td>
+      <td style="border:0;"><%= @user.follower.count %></td>
+      <td style="border:0;" class="border-start"><%= @user.following.count %></td>
+      <td style="border:0;" class="border-start"><%= @songs.count %></td>
     </tr>
   </tbody>
 </table>
@@ -65,7 +65,7 @@
   <div class="card-header">
     <% if song.user.image.url %> 
       <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
-      <%= link_to 'Details', song_path(song), class:"btn btn-outline-light" %>
+      <%= link_to 'Comments', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
       <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
         <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
@@ -74,7 +74,7 @@
         <%end%> 
     <% else %>
     <%= link_to image_tag("avatar.png", class:"avatar"), account_path(song.user.id) %>
-    <%= link_to 'Details', song_path(song), class:"btn btn-dark" %>
+    <%= link_to 'Comments', song_path(song), class:"btn btn-dark", style:"margin-left:0.5em;" %>
     <%if user_signed_in? %>
       <% if(current_user.id == song.user.id)%> 
         <%= link_to 'Edit', edit_song_path(song), class:"btn btn-primary" %>
@@ -99,9 +99,19 @@
         <% if song.audio.url %> 
         <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
         <script>
+        
+        function setCookie(c_name,value,exdays)
+        {
+          var exdate=new Date();
+          exdate.setDate(exdate.getDate() + exdays);
+          var c_value=escape(value) + 
+          ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+          document.cookie=c_name + "=" + c_value+ "; path=/";
+        }
   
    function change_music(music, id, idi)
    {
+     setCookie('playState', 'true');
     var elements = document.getElementsByClassName("bi bi-pause");
     var buttons = document.getElementsByClassName("btn btn-light rounded-circle");
 
@@ -155,6 +165,7 @@
 
    function pause_music(music, id, idi) 
    {
+     setCookie('playState', 'false');
      document.getElementById("main-player").pause();
      document.getElementById(id).setAttribute( "onclick", "change_music('" + music + "', '" + id + "', '" + idi +"')");
      document.getElementById(idi).className = "bi bi-play";
