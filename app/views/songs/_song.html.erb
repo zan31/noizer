@@ -1,0 +1,249 @@
+<% @users.each do |user| %>
+<div class="card" id="usercardsearch">
+  <div class="row g-0">
+    <div class="col-md-12">
+  </div>
+  </div>
+ <div class="card-body">
+    <h5 class="card-title"><span style="color:white; padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">
+    <% if user.image.url %>
+    <%= image_tag user.image.url, class:"avatar" %>
+    <%else%>
+    <%= image_tag "avatar.png", class:"avatar" %>
+    <%end%>
+    @<%=user.name%> 
+    <% if user_signed_in? %>
+  <% unless user == current_user %>
+    <% if current_user.following?(user) %>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %></span></h5>
+    <p class="card-text ">
+    <table id="account-table" class="table" style="border:0 !important;">
+  <thead style="border:0 !important;">
+    <tr style="border:0 !important;">
+      <th style="border:0;" scope="col">Followers</th>
+      <th style="border:0;" class="border-start" scope="col">Following</th>
+      <th style="border:0;" class="border-start" scope="col">Songs</th>
+    </tr>
+  </thead>
+  <tbody style="border:0 !important;">
+    <tr style="border:0 !important;">
+      <td style="border:0;"><%= user.follower.count %></td>
+      <td style="border:0;" class="border-start"><%= user.following.count %></td>
+      <td style="border:0;" class="border-start"><% @usersongs = Song.where(user_id: user.id) %> <%= @usersongs.count %> </td>
+    </tr>
+  </tbody>
+</table>
+    </p>
+  </div>
+    <div class="card-footer text-muted">
+     <div class="row g-0">
+    <div class="col-md-12">
+    Joined <%= time_ago_in_words(user.created_at) %> ago
+    </div>
+</div>
+</div>
+  </div>
+</div>
+<%end%>
+
+
+<% content_for :title, "All songs" %>
+<% @songs.each do |song| %>
+  <div id="postcard" class="card">
+  <div class="card-header">
+    <% if song.user.image.url %> 
+      <%= link_to image_tag(song.user.image.url, class:"avatar"), account_path(song.user.id) %>
+          <% if user_signed_in? %>
+  <% unless song.user == current_user %>
+    <% if current_user.following?(song.user) %>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %>
+      <%= link_to 'Comments', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
+      <%if user_signed_in? %>
+      <% if(current_user.id == song.user.id)%> 
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+        <%end%>
+        <%end%> 
+    <% else %>
+    <%= link_to image_tag("avatar.png", class:"avatar"), account_path(song.user.id) %>
+        <% if user_signed_in? %>
+  <% unless song.user == current_user %>
+    <% if current_user.following?(song.user) %>
+      <%= link_to '<i class="bi bi-person-dash-fill"></i>'.html_safe, unfollow_path(song.user.id), method: :delete, class:"link-danger", id:"follow"%>
+    <% else %>
+      <%= link_to '<i class="bi bi-person-plus"></i>'.html_safe, follow_path(song.user.id), method: :post, class:"link-secondary", id:"follow"%>
+    <% end %>
+  <% end %>
+<% end %>
+    <%= link_to 'Comments', song_path(song), class:"btn btn-outline-light", style:"margin-left:0.5em;" %>
+    <%if user_signed_in? %>
+      <% if(current_user.id == song.user.id)%> 
+        <%= link_to 'Edit', edit_song_path(song), class:"btn btn-outline-warning" %>
+        <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+        <%end%>
+        <%end%> 
+    <%end%> 
+  </div>
+   <div class="row g-0">
+    <div class="col-md-3">
+      <% if song.image.url %>
+  <%= image_tag song.image.url, class:"img-fluid rounded-start" %>
+  <%else%>
+  <%= image_tag "default_album.png", class:"img-fluid rounded-start", style:"height:15rem;" %>
+  <%end%>
+  
+    </div>
+    <div class="col-md-4">
+    <div class="card-body">
+      <h5 class="card-title" style="color:white;"><%= song.title %></h5>
+        <p class="card-text"><% if (song.author != "" || song.author.nil?) %><%= song.author %><% else %><%= song.user.name %><%end%> </p>
+        <% if song.audio.url %> 
+        <button type="button" id="<%= song.id %>" class="btn btn-light rounded-circle" onclick="change_music('<%=song.audio.url%>', '<%=song.id%>', 'i<%=song.id%>');"><i id='i<%=song.id%>' class="bi bi-play" style="font-size:2em;"></i></button>
+        <script>
+          function setCookie(c_name,value,exdays)
+          {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value=escape(value) + 
+            ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value+ "; path=/";
+          }
+  
+   function change_music(music, id, idi)
+   {
+     setCookie('playState', 'true');
+    var elements = document.getElementsByClassName("bi bi-pause");
+    var buttons = document.getElementsByClassName("btn btn-light rounded-circle");
+
+    //console.log(document.getElementById(id).getAttribute('onclick'));
+    for(var i = buttons.length - 1; i >= 0; --i)
+    {
+        if(buttons[i].getAttribute('id') == id){
+        }
+        else{
+          let x = buttons[i].getAttribute("onclick").split("_");
+          x[0] = "change";
+          var string = x.join("_");
+          buttons[i].setAttribute("onclick", string);
+        }
+        // PERFORM STUFF ON THE ELEMENT
+        
+
+        // elements[i] no longer exists past this point, in most browsers
+    }  
+
+    for(var i = elements.length - 1; i >= 0; --i)
+    {
+        
+        // PERFORM STUFF ON THE ELEMENT
+        elements[i].className = "bi bi-play";
+        
+
+        // elements[i] no longer exists past this point, in most browsers
+    }  
+     if(document.getElementById("main-player").src == music) {
+       document.getElementById("main-player").play();
+       document.getElementById(id).setAttribute( "onclick", "pause_music('" + music + "', '" + id + "', '" + idi +"')");
+       document.getElementById(idi).className = "bi bi-pause";
+       
+     }
+     else{
+       document.getElementById("main-player").pause();
+       document.getElementById("main-player").setAttribute('src', music);
+       document.getElementById("main-player").load();
+       document.getElementById("main-player").play();
+       
+       
+       sessionStorage.setItem('current_song',music);
+
+       document.getElementById(id).setAttribute( "onclick", "pause_music('" + music + "', '" + id + "', '" + idi +"')");
+       document.getElementById(idi).className = "bi bi-pause";
+     }
+
+   }
+
+   function pause_music(music, id, idi) 
+   {
+     setCookie('playState', 'false');
+     document.getElementById("main-player").pause();
+     document.getElementById(id).setAttribute( "onclick", "change_music('" + music + "', '" + id + "', '" + idi +"')");
+     document.getElementById(idi).className = "bi bi-play";
+     
+   }
+
+
+</script>
+        <% else %>
+        No audio
+        <%end%> 
+        <br />
+        <%if user_signed_in? %>
+        <% pre_like = song.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= link_to '<i class="bi bi-heart-fill"></i>'.html_safe, song_like_path(song.id, pre_like), method: :delete, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;"%>
+<% else %>
+  <%= link_to '<i class="bi bi-heart"></i>'.html_safe, song_likes_path(song.id), method: :post, class:"text-decoration-none", style:"color: white; font-size: 1.5rem;" %>
+<% end %>
+<% end %>
+<div> 
+  </div>
+    </div>
+        </div>
+        <div class="col-md-5">
+      <% song.comments.limit(2).reverse.each do |comment| %>
+      <% unless !comment.persisted? %>
+<div class="card" style="background-color: rgb(64, 64, 64);">
+  <div class="card-body">
+  <h6 class="card-title" style="color: white;">
+<% if comment.user.image.url %> 
+      <%= link_to image_tag(comment.user.image.url, class:"small"), account_path(comment.user.id) %>
+      <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Delete', song_comment_path(song.id, comment.id), class: "link-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <% else %>
+    <%= link_to image_tag("avatar.png", class:"small"), account_path(comment.user.id) %>
+    <%if user_signed_in? %>
+      <% if(current_user.id == comment.user.id)%>
+      <%= link_to 'Destroy', song_comment_path(song.id, comment.id), class: "link-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <%end%> 
+    <%end%> 
+  <%= comment.user.name %><%if(comment.song_time!=nil)%> at <%= comment.song_time %> seconds</span><%end%></h6>
+    <p class="card-text" stye="color: whitesmoke;"><%= comment.body %></p>
+  </div>
+</div>
+<%end%>
+      <%end%>
+    </div>
+  <div class="card-footer text-muted">
+     <div class="row g-0">
+    <div class="col-md-6">
+  <div class="d-inline">
+    <%= song.likes.count %> <%= (song.likes.count) == 1 ? 'Like' : 'Likes'%>
+    |
+    <%= song.comments.count %> <%= (song.comments.count) == 1 ? 'Comment' : 'Comments'%>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div style="text-align: right !important;">
+    <%= time_ago_in_words(song.created_at) %> ago
+    </div>
+    </div>
+</div>
+</div>
+    </div>
+  </div>
+  </div>
+    <% end %>

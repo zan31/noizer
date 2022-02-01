@@ -24,9 +24,10 @@ class SongsController < ApplicationController
   end
 
   def search
+    @users = User.search(params[:keyword].downcase)
     @songs = Song.search(params[:keyword].downcase)
     @keyword = params[:keyword]
-    render "index"
+    render "_song"
   end
 
   # POST /songs or /songs.json

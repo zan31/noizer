@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :following_user, through: :following, source: :follower
   has_many :follower_user, through: :follower, source: :following
 
+  def self.search(keyword)
+    where(["LOWER(name) like?", "%#{keyword}%"])
+  end
+
   def follow(user_id)
     following.create(follower_id: user_id)
   end
