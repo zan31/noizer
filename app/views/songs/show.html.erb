@@ -179,7 +179,7 @@
     <% end %>
      <% end %>
 
-      <%= render @song.comments 
+      <%= render @song.comments.reverse 
       #.limit(1)  
       %>
     </div>
