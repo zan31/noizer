@@ -4,7 +4,7 @@ class SongsController < ApplicationController
 
   # GET /songs or /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.all.reverse
   end
 
   def top
