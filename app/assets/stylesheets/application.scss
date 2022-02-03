@@ -16,6 +16,9 @@
    #usercard{
      width: 90% !important;
    }
+   #usercardsearch{
+    width: 90% !important;
+   }
    #logincontainer{
      height: 100vh;
     background-image: image-url('photo_guitar.png');
@@ -105,8 +108,9 @@ audio {
   margin-top: 2rem;
 }
 #usercardsearch{
+  margin-top: 2rem;
   background-color: rgb(64, 64, 64);
-  width: 20%;
+  width: 60%;
   margin: auto;
 }
 #usercard{
