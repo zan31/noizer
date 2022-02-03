@@ -5,9 +5,9 @@
 
 **Ruby:** 3
 
-![Instabook Logo](https://i.imgur.com/XGzUBzl.png)
+![Noizer Logo](https://i.imgur.com/EGvfrnq.png)
 
-**Live preview:** [http://instabook2003.herokuapp.com](http://instabook2003.herokuapp.com)
+**Live preview:** [https://noizer.herokuapp.com](https://noizer.herokuapp.com)
 
 ##### **Instabook** is a social media platform built using Ruby on the Rails framework.
 
@@ -19,21 +19,21 @@ It has a bunch of features including
 
 The user can also *edit* and *delete* their posts. They also have an ability to set their **profile image** and **cover image**. There is also a function to deactive an account.
 
-Administrators have access to an **Admin Panel**, which has been added using the [rails_admin](https://rubygems.org/gems/rails_admin) gem.
+Administrators have access to an **Admin Panel**, which has been added using the [rails_admin](https://rubygems.org/gems/rails_admin) gem. And authenticated with [cancan](https://github.com/ryanb/cancan)
 
 The relationship, post and comment system have been custom coded and are not part of any gems.
 
 ## Screenshots
 
-![Login Page](https://i.imgur.com/kUK8Bey.png)
+![Login Page](https://i.imgur.com/8P1kAzW.png)
 
-This is the **Login Page**. It will open as the first page when you open the website if you're not yet logged in. The login system is part of the [Devise](https://rubygems.org/gems/devise) gem. I've also added a *Remember me* button.
+This is the **Login Page**. This is required for most of the site functionality mut you can always rock out to music not signed in. The login system is part of the [Devise](https://rubygems.org/gems/devise) gem. I also used [Omniauth](https://github.com/omniauth/omniauth) to create a facebook and google login option.
 
-![Register Page](https://i.imgur.com/zWNCXd7.png)
+![Register Page](https://i.imgur.com/P1BW0or.png)
 
-By clicking the gray *Sign Up* button on the login page, you'll be greeted with this. This is the **Sign Up Page**. Users upload their profile picture and input some basic information.
+By clicking the gray *Sign Up* button on the login page, you'll be greeted with this. This is the **Sign Up Page**. Users upload their profile picture and cover image but it is not required and input some basic information.
 
-![Main Page](https://i.imgur.com/p0p0Xds.png)
+![Main Page](https://i.imgur.com/FpbNTK0.png)
 
 When you login, you'll see this. This is the **Home page**. As you can see, there's quite a lot going on here. First, you see your *timeline*. All posts will be shown here. On the right side, you can see the *Gallery* tab. It displays all the images that have been posted to the website.
 On the far right side are *Suggestions*. You can follow users or visit their accounts by clicking on their name.
@@ -41,10 +41,9 @@ The purple rectangle displays the last user that has joined the website. I didn'
 On the left side is your profile and a login button.
 You can also *make new posts*, *comment* and *like* posts here.
 
-![New Post Page](https://i.imgur.com/V7Y6fNt.png)
+![New Post Page](https://i.imgur.com/WG5d2jd.png)
 
-When you click the **New Post** button on the home page, you'll end up here. This page is custom coded and offers you to either post with or without text. You can also add custom emojis to your text by clicking on the *emoji* button displayed in the top-right corner of the textarea. Emojis are part of the [emojiarea.js](https://github.com/diy/jquery-emojiarea) JS script.
-
+When you click the **New Post** button on the home page, you'll end up here. This page is custom coded and offers you to either post with audio or without one.
 ![My Profile Page](https://i.imgur.com/QBSKEIB.png)
 
 This is the **My Profile** page. It displays everything you'd expect it to.
