@@ -40,6 +40,7 @@ When you login, you'll see this. This is the **Home page**. It basically desplay
 ![New Song Page](https://i.imgur.com/WG5d2jd.png)
 
 When you click the **New song** link on the home page, you'll end up here. This page is custom coded and offers you to either post with audio or without one.
+
 ![My Profile Page](https://i.imgur.com/p1PsEJL.png)
 
 This is the **My Profile** page. It displays everything you'd expect it to.
