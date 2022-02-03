@@ -35,59 +35,22 @@ By clicking the gray *Sign Up* button on the login page, you'll be greeted with 
 
 ![Main Page](https://i.imgur.com/FpbNTK0.png)
 
-When you login, you'll see this. This is the **Home page**. As you can see, there's quite a lot going on here. First, you see your *timeline*. All posts will be shown here. On the right side, you can see the *Gallery* tab. It displays all the images that have been posted to the website.
-On the far right side are *Suggestions*. You can follow users or visit their accounts by clicking on their name.
-The purple rectangle displays the last user that has joined the website. I didn't have a better idea so I made that.
-On the left side is your profile and a login button.
-You can also *make new posts*, *comment* and *like* posts here.
+When you login, you'll see this. This is the **Home page**. It basically desplays to you all the songs in time order, and then you can like them, follow them and comment on them in the detail page. A neat feature is also that if you are listening to the song it shows when in the song you commented on it.
 
-![New Post Page](https://i.imgur.com/WG5d2jd.png)
+![New Song Page](https://i.imgur.com/WG5d2jd.png)
 
-When you click the **New Post** button on the home page, you'll end up here. This page is custom coded and offers you to either post with audio or without one.
-![My Profile Page](https://i.imgur.com/QBSKEIB.png)
+When you click the **New song** link on the home page, you'll end up here. This page is custom coded and offers you to either post with audio or without one.
+![My Profile Page](https://i.imgur.com/p1PsEJL.png)
 
 This is the **My Profile** page. It displays everything you'd expect it to.
-It shows the number of followers you've got, as well as how many people you follow. It also shows your posts and your *Gallery* which can be expanded. You can edit your profile here by clicking on the *Edit Profile* button.
+It shows the number of followers you've got, as well as how many people you follow. It also shows your songs.
 
-![Expanded Gallery](https://i.imgur.com/g66W24u.png)
+For image upload I am using [fog-aws](https://github.com/fog/fog-aws) to use S3 for my storage and [carrierwave](https://github.com/carrierwaveuploader/carrierwave) to upload them.
 
-You'll see this if you click on an image in *Gallery*. The post currently doesn't have any comments sooooooo they obviously won't show up. But if it had them they would.... I think and hope.
+![Search page](https://i.imgur.com/68Kv8FE.png)
 
-That's all there is too it really. I probably forgot some minor functions but you'll probably come across them while using/developing the app.
+With the navbar searchbar you can search for songs and users, and it displays them.
 
-
-
-## Setup
-
-Clone the project
-
-```bash
-  git clone https://github.com/nejcpirecnik/instabook.git
-```
-
-Navigate into it
-
-```bash
-  cd "where_you_exported_it"
-```
-
-Install all the gems
-
-```bash
-  bundle install
-```
-
-Migrate the database
-
-```bash
-  rails db:migrate
-```
-
-Start the server
-
-```bash
-  rails s
-```
 ## Tech Stack
 
 **Rails:** 6
