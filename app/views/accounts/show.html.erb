@@ -19,7 +19,7 @@
   <%end%>
   </div>
  <div class="card-body">
-    <h5 class="card-title"><span style="color:white; padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">@<%=@user.name%> | <%=@user.email%> 
+    <h5 class="card-title"><span style="color:white; padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">@<%=@user.name%> 
     <% if user_signed_in? %>
   <% unless @user == current_user %>
     <% if current_user.following?(@user) %>
