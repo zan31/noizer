@@ -7,9 +7,9 @@
  <div class="card-body">
     <h5 class="card-title"><span style="color:white; padding: 0.2rem; border-radius: 5%; background-color: rgb(64, 64, 64);">
     <% if user.image.url %>
-    <%= image_tag user.image.url, class:"avatar" %>
+    <%= link_to image_tag(user.image.url, class:"avatar"), account_path(user.id) %>
     <%else%>
-    <%= image_tag "avatar.png", class:"avatar" %>
+    <%= link_to image_tag("avatar.png", class:"avatar"), account_path(user.id) %>
     <%end%>
     @<%=user.name%> 
     <% if user_signed_in? %>
